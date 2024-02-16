@@ -5,8 +5,18 @@ import java.io.*;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
 
-    public void setCaclculadora() {
+    public boolean validacion(String numero) {
+        int num;
+        try {
+            num = Integer.parseInt(numero);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
+    public void setCalculadora() {
+        String entrada;
         int opcion = 0;
         do {
             System.out.println("-----BIENVENIDO AL MENU----");
@@ -17,65 +27,99 @@ public class Menu {
             System.out.println("5.Salir del programa");
             System.out.println("----------------------------------------");
             System.out.println("POR FAVOR INGRESE UNA OPCION");
-            opcion = scanner.nextInt();
-            int numero1 = 0;
-            int numero2 = 0;
-            int resultado = 0;
-            switch (opcion) {
-                case 1:
-
-                    System.out.println("----------------------------------------");
-                    System.out.println("BIENVENIDO A LA SUMA");
-                    System.out.println("INGRESE NUMERO 1");
-                    numero1 = scanner.nextInt();
-                    System.out.println("INGRESE NUMERO 2");
-                    numero2 = scanner.nextInt();
-
-                    resultado = numero1 + numero2;
-                    System.out.println("EL RESULTADO DE LA OPERACION SUMA ES" + " " + resultado);
-
-                    break;
-                case 2:
-                    System.out.println("----------------------------------------");
-                    System.out.println("BIENVENIDO A LA RESTA");
-                    System.out.println("INGRESE NUMERO 1");
-                    numero1 = scanner.nextInt();
-                    System.out.println("INGRESE NUMERO 2");
-                    numero2 = scanner.nextInt();
-                    resultado = numero1 - numero2;
-                    System.out.println("EL RESULTADO DE LA OPERACION RESTA ES" + " " + resultado);
-                    break;
-                case 3:
-                    System.out.println("----------------------------------------");
-                    System.out.println("BIENVENIDO A LA MULTIPLICACION");
-                    System.out.println("INGRESE NUMERO 1");
-                    numero1 = scanner.nextInt();
-                    System.out.println("INGRESE NUMERO 2");
-                    numero2 = scanner.nextInt();
-                    resultado = numero1 * numero2;
-                    System.out.println("EL RESULTADO DE LA OPERACION MULTIPLICACION ES" + " " + resultado);
-                    break;
-                case 4:
-                    System.out.println("----------------------------------------");
-                    System.out.println("BIENVENIDO A LA DIVISION");
-                    System.out.println("INGRESE NUMERO 1");
-                    numero1 = scanner.nextInt();
-                    System.out.println("INGRESE NUMERO 2");
-                    numero2 = scanner.nextInt();
-                    if (numero2 > 0) {
-                        resultado = numero1 / numero2;
-                        System.out.println("EL RESULTADO DE LA OPERACION DIVISION ES" + " " + resultado);
-                    } else {
-                        System.out.println("EL DENOMINADOR NO PUEDE SER 0");
+            entrada = scanner.nextLine();
+            if (validacion(entrada)) {
+                opcion = Integer.parseInt(entrada);
+                int numero1 = 0;
+                int numero2 = 0;
+                int resultado = 0;
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Ingrese el primer número:");
+                        entrada = scanner.nextLine();
+                        if (validacion(entrada)) {
+                            numero1 = Integer.parseInt(entrada);
+                            System.out.println("Ingrese el segundo número:");
+                            entrada = scanner.nextLine();
+                            if (validacion(entrada)) {
+                                numero2 = Integer.parseInt(entrada);
+                                resultado = numero1 + numero2;
+                                System.out.println("El resultado de la suma es: " + resultado);
+                            } else {
+                                System.out.println("Entrada inválida. Por favor ingrese un número.");
+                            }
+                        } else {
+                            System.out.println("Entrada inválida. Por favor ingrese un número.");
+                        }
                         break;
-                    }
-
-                case 5:
-                    break;
-                default:
-                    System.out.println("---OPCION INCORRECTA----");
+                    case 2:
+                        System.out.println("----------------------------------------");
+                        System.out.println("BIENVENIDO A LA RESTA");
+                        System.out.println("INGRESE NUMERO 1");
+                        entrada = scanner.nextLine();
+                        if (validacion(entrada)) {
+                            numero1 = Integer.parseInt(entrada);
+                            System.out.println("INGRESE NUMERO 2");
+                            entrada = scanner.nextLine();
+                            if (validacion(entrada)) {
+                                numero2 = Integer.parseInt(entrada);
+                                resultado = numero1 - numero2;
+                                System.out.println("EL RESULTADO DE LA OPERACION RESTA ES" + " " + resultado);
+                            } else {
+                                System.out.println("Entrada inválida. Por favor ingrese un número.");
+                            }
+                        } else {
+                            System.out.println("Entrada inválida. Por favor ingrese un número.");
+                        }
+                        break;
+                    case 3:
+                        System.out.println("----------------------------------------");
+                        System.out.println("BIENVENIDO A LA MULTIPLICACION");
+                        System.out.println("INGRESE NUMERO 1");
+                        entrada = scanner.nextLine();
+                        if (validacion(entrada)) {
+                            numero1 = Integer.parseInt(entrada);
+                            System.out.println("INGRESE NUMERO 2");
+                            entrada = scanner.nextLine();
+                            if (validacion(entrada)) {
+                                numero2 = Integer.parseInt(entrada);
+                                resultado = numero1 * numero2;
+                                System.out.println("EL RESULTADO DE LA OPERACION MULTIPLICACION ES" + " " + resultado);
+                            } else {
+                                System.out.println("Entrada inválida. Por favor ingrese un número.");
+                            }
+                        } else {
+                            System.out.println("Entrada inválida. Por favor ingrese un número.");
+                        }
+                        break;
+                    case 4:
+                        System.out.println("----------------------------------------");
+                        System.out.println("BIENVENIDO A LA DIVISION");
+                        System.out.println("INGRESE NUMERO 1");
+                        entrada = scanner.nextLine();
+                        if (validacion(entrada)) {
+                            numero1 = Integer.parseInt(entrada);
+                            System.out.println("INGRESE NUMERO 2");
+                            entrada = scanner.nextLine();
+                            if (validacion(entrada)) {
+                                numero2 = Integer.parseInt(entrada);
+                                if (numero2 != 0) {
+                                    resultado = numero1 / numero2;
+                                    System.out.println("EL RESULTADO DE LA OPERACION DIVISION ES" + " " + resultado);
+                                } else {
+                                    System.out.println("No se puede dividir por cero.");
+                                }
+                            } else {
+                                System.out.println("Entrada inválida. Por favor ingrese un número.");
+                            }
+                        } else {
+                            System.out.println("Entrada inválida. Por favor ingrese un número.");
+                        }
+                        break;
+                }
+            } else {
+                System.out.println("Entrada inválida. Por favor ingrese un número.");
             }
         } while (opcion != 5);
     }
-
 }
